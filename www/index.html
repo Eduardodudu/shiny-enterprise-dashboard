@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Enterprise Shiny Dashboard</title>
+    <meta name="description" content="Enterprise Shiny Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {{ headContent() }}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="#" />
+    <link href="main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="main-header">
+      {{ mainLogo }}
+      <span class="main-title" class="main-heading">Appsilon Dashboard</span>
+    </h1>
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h2 class="dashboard-heading">
+          {{ dashboardLogo }}
+          <span class="dashboard-title">{{ appTitle }}</span>
+          <span class="dashboard-version">{{ appVersion }}</span>
+        </h2>
+        <div class="dashboard-filters">
+          {{ selectYear }} {{ selectMonth }} {{ previousTimeRange }}
+        </div>
+      </header>
+      <section class="dashboard-panels">
+        <div class="panel panel-metric sales">{{ salesSummary }}</div>
+        <div class="panel panel-metric production">{{ productionSummary }}</div>
+        <div class="panel panel-metric users">{{ usersSummary }}</div>
+        <div class="panel panel-metric complaints">{{ complaintsSummary }}</div>
+        <div class="panel panel-chart chart-time">{{ timeChart }}</div>
+        <div class="panel panel-chart chart-map">{{ countryMap }}</div>
+        <div class="panel panel-chart chart-breakdown">{{ breakdownChart }}</div>
+      </section>
+    </main>
+    <footer class="footer">
+      <h3 class="footer-heading">
+        <span>This application is powered by a template from</span>
+        <a
+          class="footer-link"
+          href={{ marketplace_website }}
+          target="_blank"
+          rel="nofollow noreferrer"
+        >
+          Appsilon's Shiny Marketplace
+        </a>
+      </h3>
+    </footer>
+  </body>
+</html>
