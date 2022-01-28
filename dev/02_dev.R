@@ -15,48 +15,32 @@
 
 ## Dependencies ----
 ## Add one line by package you want to add as dependency
-usethis::use_package( "bs4Dash" )
-usethis::use_package( "dplyr" )
-usethis::use_package("purrr")
-usethis::use_package( "readxl" )
-usethis::use_package( "pool" )
-usethis::use_package( "DT" )
-usethis::use_package( "shinyjqui" )
-usethis::use_package( "waiter" )
-usethis::use_package("summarytools")
-usethis::use_package( "echarts4r" )
-usethis::use_package( "datamods" )
-usethis::use_package( "lubridate" )
-usethis::use_package("sortable")
-usethis::use_package("shinyalert")
-usethis::use_package("shinycssloaders")
-usethis::use_package("sodium")
-usethis::use_package("reactable")
-usethis::use_package("glue")
-usethis::use_package("highcharter")
-usethis::use_package("reactablefmtr") #https://github.com/kcuilla/reactablefmtr
-usethis::use_pipe()
+# usethis::use_package( "bs4Dash" )
+# usethis::use_package("reactablefmtr") #https://github.com/kcuilla/reactablefmtr
+# usethis::use_pipe()
+renv::init()
+renv::snapshot()
 
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module( name = "Waiter" )
-golem::add_module( name = "PBI")
-golem::add_module( name = "WH")
-golem::add_module( name = "DB")
-golem::add_module( name = "PBI_template")
-golem::add_module( name = "users")
+# golem::add_module( name = "Waiter" )
+# golem::add_module( name = "PBI")
+# golem::add_module( name = "WH")
+# golem::add_module( name = "DB")
+# golem::add_module( name = "PBI_template")
+# golem::add_module( name = "users")
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
 # golem::add_fct( "helpers" ) 
-golem::add_utils( "helpers" )
+# golem::add_utils( "helpers" )
 
 ## External resources
 ## Creates .js and .css files at inst/app/www
-golem::add_js_file( "script" )
-golem::add_js_handler( "handlers" )
-golem::add_css_file( "custom" )
+# golem::add_js_file( "script" )
+# golem::add_js_handler( "handlers" )
+# golem::add_css_file( "custom" )
 
 ## Add internal datasets ----
 ## If you have data in your package
