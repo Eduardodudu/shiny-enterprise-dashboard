@@ -18,7 +18,7 @@ getPercentChangeSpan <- function(changeValue, invert_colors = NULL) {
     sign <- ""
   }
   
-  if (!is.null(invert_colors) && invert_colors == TRUE) {
+  if (!is.null(invert_colors) && as.logical(invert_colors) == TRUE) {
     CSSclass <- paste(CSSclass, "inverted-colors")
   }
 

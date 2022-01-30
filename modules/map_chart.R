@@ -3,6 +3,7 @@
 import("shiny")
 import("echarts4r")
 import("htmlwidgets")
+import("tidyr")
 
 export("ui")
 export("init_server")

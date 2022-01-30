@@ -33,15 +33,15 @@ ui <- function(id) {
   )
 }
 
-init_server <- function(id, df, y, m, previous_time_range) {
-  callModule(server, id, df, y, m, previous_time_range)
+init_server <- function(id, df, y, m, monthly_df, yearly_df, previous_time_range) {
+  callModule(server, id, df, y, m, monthly_df, yearly_df, previous_time_range)
 }
 
-server <- function(input, output, session, df, y, m, previous_time_range) {
-  
+server <- function(input, output, session, df, y, m, monthly_df, yearly_df, previous_time_range) {
+
   output$breakdown <- renderPlot({
-    yearly_stats <- read.csv("data/yearly_stats.csv")
-    monthly_stats <- read.csv("data/monthly_stats.csv")
+    yearly_stats <- yearly_df
+    monthly_stats <- monthly_df
     metrics <- names(consts$metrics_list)
     percents <- paste(metrics, ".perc_", previous_time_range(), sep="")
 

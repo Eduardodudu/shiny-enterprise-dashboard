@@ -1,17 +1,13 @@
-daily_stats <- 
-  read.csv("data/daily_stats.csv", header = TRUE, stringsAsFactors = TRUE) %>%
-  mutate(date = ymd(date))
+consts <- use("constants.R")
 
-monthly_stats <- read.csv("data/monthly_stats.csv", header = TRUE) %>%
-  mutate(date = ymd(date))
-
-yearly_stats <- read.csv("data/yearly_stats.csv", header = TRUE) %>%
-  mutate(date = ymd(date))
-
-countries_stats <- read.csv("data/countries_stats.csv", header = TRUE) %>%
-  mutate(date = ymd(date))
+daily_stats <- consts$daily_stats
+monthly_stats <- consts$monthly_stats
+yearly_stats <- consts$yearly_stats
+countries_stats <- consts$countries_stats
 
 server <- function(input, output, session) {
+  # browser()
+  
   observeEvent(c(input$selected_year), {
     months_choices <-
       getMonthsChoices(input$selected_year, consts$data_last_day)
@@ -81,6 +77,8 @@ server <- function(input, output, session) {
                          previous_time_range = previous_time_range)
   breakdown_chart$init_server("breakdown_chart",
                               df = daily_stats,
+                              monthly_df = monthly_stats,
+                              yearly_df = yearly_stats,
                               y = selected_year,
                               m = selected_month,
                               previous_time_range = previous_time_range)

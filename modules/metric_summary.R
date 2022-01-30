@@ -36,8 +36,7 @@ init_server <- function(id, monthly_df, yearly_df,
                           y, m, previous_time_range)
 }
 
-server <- function(input, output, session, monthly_df, yearly_df,
-                          y, m, previous_time_range) {
+server <- function(input, output, session, monthly_df, yearly_df, y, m, previous_time_range) {
 
     metric <- reactive({ consts$metrics_list[[input$summary_metric]] })
     
@@ -55,13 +54,19 @@ server <- function(input, output, session, monthly_df, yearly_df,
       row <- df[df$date == selected_date, ]
 
       metric_total_value <- row[, metric()$id]
+
+      invert_colors <- consts$metrics_list[[metric()$id]]$invert_colors %>% 
+                       as.logical()
       
-      invert_colors <- consts$metrics_list[[metric()$id]]$invert_colors
+      if (is.na(invert_colors)) {
+        invert_colors <- NULL
+      }
+      
       metric_change_span <-
         row[, paste0(metric()$id, ".perc_", prev_timerange_suffix)] %>% getPercentChangeSpan(invert_colors)
       
       valuePrefix <-
-        ifelse(!is.null(metric()$currency),
+        ifelse(!is.na(metric()$currency),
           paste0(metric()$currency, " "),
           ""
         )
