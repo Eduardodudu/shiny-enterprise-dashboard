@@ -22,6 +22,13 @@ renv::init()
 renv::snapshot()
 
 
+#update your spreadsheet template
+rstudioapi::navigateToFile("data-raw/dataset.R")
+
+
+#update logo svgs
+rstudioapi::navigateToFile("constants.R")
+
 ## Add modules ----
 ## Create a module infrastructure in R/
 # golem::add_module( name = "Waiter" )
@@ -44,7 +51,7 @@ renv::snapshot()
 
 ## Add internal datasets ----
 ## If you have data in your package
-usethis::use_data_raw( name = "dataset", open = FALSE ) 
+# usethis::use_data_raw( name = "dataset", open = FALSE ) 
 
 ## Tests ----
 ## Add one line by test you want to create
