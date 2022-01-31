@@ -62,18 +62,56 @@ metrics_list <- aux_metrics_list$data %>%
 
 # 2.2.3 Data --------------------------------------------------------------
 
-daily_stats <- daily_stats_df
 
-monthly_stats <- monthly_stats_df
+cols <- dataset_df %>% 
+        select(-(date:country)) %>% 
+        names()
 
-yearly_stats <- yearly_stats_df
+countries_stats <- dataset_df %>% 
+                   mutate(date = floor_date(date, "month")) %>% 
+                   group_by(date, country) %>% 
+                   summarise(across(where(is.numeric), sum, .names = "{col}")) 
 
-countries_stats <- countries_stats_df
+
+daily_stats <- dataset_df %>% 
+               group_by(country) %>% 
+               summarise(across(where(is.numeric), sum, .names = "{col}")) %>% 
+               mutate(across(all_of(cols),
+                             list(
+                               prev_month = ~lag(.x, n = 31),
+                               prev_year = ~lag(.x, n = 365),
+                               change_prev_month = ~ -(lag(.x, n = 31) - .x),
+                               change_prev_year = ~ -(lag(.x, n = 31) - .x)
+                             ), .names = "{col}.{fn}"))
+
+
+               
+monthly_stats <- dataset_df %>% 
+                 mutate(date = floor_date(date, "month")) %>% 
+                 group_by(date) %>% 
+                 summarise(across(where(is.numeric), sum, .names = "{col}")) %>% 
+                 mutate(across(all_of(cols),
+                                list(
+                                  perc_prev_month = ~ -round(((lag(.x, n = 1) - .x)/.x),2),
+                                  perc_prev_year = ~ -round(((lag(.x, n = 12) - .x)/.x),2)
+                                ), .names = "{col}.{fn}"))
+
+
+
+yearly_stats <- dataset_df %>% 
+                mutate(date = floor_date(date, "year")) %>% 
+                group_by(date) %>% 
+                summarise(across(where(is.numeric), sum, .names = "{col}")) %>% 
+                mutate(across(all_of(cols),
+                              list(
+                                perc_prev_month = ~ -round(((lag(.x, n = 1) - .x)/.x),2)
+                              ), .names = "{col}.{fn}"))
+
 
 
 # 2.3 Save data --------------------------------------------
 
-rm(i,Data,path)
+rm(i,Data,path,cols)
 rm(list = ls(pattern = "df|aux"))
 
 save.image("data/constants.RData")

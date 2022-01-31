@@ -2,9 +2,6 @@
 library(tidyverse)
 library(lubridate)
 library(xlsx)
-library(readxl)
-library(htmltools)
-library(openxlsx)
 
 # 1. Spreadsheet data -----------------------------------------------------
 
@@ -36,18 +33,39 @@ const_vals_df <- tibble(id = const) %>%
 
 # 1.2 Get Csvs --------------------------------------------------------------------
 
-daily_stats_df <- 
-  read.csv("data-raw/daily_stats.csv", header = TRUE, stringsAsFactors = TRUE) %>%
+daily_stats <- 
+  read.csv("data-raw/old/daily_stats.csv", header = TRUE, stringsAsFactors = TRUE) %>%
   mutate(date = ymd(date))
 
-monthly_stats_df <- read.csv("data-raw/monthly_stats.csv", header = TRUE) %>%
+monthly_stats <- read.csv("data-raw/old/monthly_stats.csv", header = TRUE) %>%
   mutate(date = ymd(date))
 
-yearly_stats_df <- read.csv("data-raw/yearly_stats.csv", header = TRUE) %>%
+yearly_stats <- read.csv("data-raw/old/yearly_stats.csv", header = TRUE) %>%
   mutate(date = ymd(date))
 
-countries_stats_df <- read.csv("data-raw/countries_stats.csv", header = TRUE) %>%
+countries_stats <- read.csv("data-raw/old/countries_stats.csv", header = TRUE) %>%
   mutate(date = ymd(date))
+
+
+# 1.2.1 Create dataset structure -------------------------------------------------------------------
+
+countries <- countries_stats %>% 
+  select(iso3,country) %>% 
+  distinct_all()
+
+dataset <- tibble(date = seq.Date(as.Date("2015-01-01"), as.Date("2021-12-31"), by = "day")) %>% 
+  crossing(countries)
+
+metrics <- c("produced_items","orders_count","revenue","cost","complaints_opened",
+             "complaints_closed","users_active","users_dropped_out", "savaged_value")
+
+metrics <- map(metrics, ~rnorm(n = nrow(dataset), 250, 25) %>% as.integer()) %>% 
+  setNames(metrics) %>% 
+  as_tibble() %>% 
+  mutate(profit = revenue - cost + savaged_value)
+
+dataset_df <- dataset %>% 
+  cbind(metrics)
 
 
 # 1.3 Create spreadsheet ------------------------------------------------
@@ -60,8 +78,8 @@ xlsx.writeMultipleData <- function (file, objects) {
   for (i in 1:nobjects) {
     print(i)
     if (i == 1)
-      write.xlsx(get(objects[i]), file, sheetName = objects[i])
-    else write.xlsx(get(objects[i]), file, sheetName = objects[i], 
+      xlsx::write.xlsx(get(objects[i]), file, sheetName = objects[i])
+    else xlsx::write.xlsx(get(objects[i]), file, sheetName = objects[i], 
                     append = TRUE)
   }
 }
