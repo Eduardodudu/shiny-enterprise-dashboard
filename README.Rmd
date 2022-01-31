@@ -27,7 +27,7 @@ For instance, if i want to create a new KPI and insert in this project then you'
 
 1.  Adjust the `constants.R` file and create a new metric
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/old-metrics.png" width="518"/>
+<img src="./vignette/images/old-metrics.png" width="518"/>
 
 2.  Update each data set with proper relationship of metrics. This part becomes exhaustive because each metric has another layer of complementary data facts, like:
 
@@ -43,7 +43,7 @@ Example:
 
 orders_count on daily metrics has: `orders_count.prev_month, orders_count.change_prev_month, orders_count.prev_year and orders_count.change_prev_year`.
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/daily-stats.png" width="590"/>
+<img src="./vignette/images/daily-stats.png" width="590"/>
 
 Since the project has 9 metrics and the daily_metrics fact has 4 calculations. That means that you'd have to give for the daily reference of metrics 45 columns with each value, and by adding any new metric you'd have to fulfill another 4 calculations on that data set.
 
@@ -62,14 +62,15 @@ A spreadsheet was `data-raw/Dataset.xlsx` to be used as the template and it has 
 3.  **time_range_df:** Relationship of time difference calculations
 4.  **Metrics_df:** A simplified version of the metric_list
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/metrics-df.PNG" width="667"/>
+<img src="./vignette/images/metrics-df.PNG" width="667"/>
 
 > A new metric has been created: savaged value
 
 5.  **map_metrics_df**: A relationship of what metrics to be shown in the maps grid, the name of each metric must follow the same id of the metrics_df
 6.  **dataset_df:** A unique dataframe with the fact containing only the metric value, the name of each metric must follow the same id of the metrics_df
 
-![](D:/01.%20Eduardo/02.%20Git/shiny-enterprise-dashboard/vignette/images/dataset-df.PNG)
+<img src="./vignette/images/dataset-df.PNG" width="667"/>
+
 
 > savaged_value is the new metric created and only increases the dataset by one column
 
@@ -77,7 +78,7 @@ A spreadsheet was `data-raw/Dataset.xlsx` to be used as the template and it has 
 
 The project can be run from two workflows:
 
-```{nomnoml, width = 250}
+```
 #direction: down
 [Dataset.xlsx]->[renv::restore()]
 [renv::restore()]->[dataset.R]
@@ -85,7 +86,11 @@ The project can be run from two workflows:
 [shiny::run_app()]->[publish to shinyapps]
 
 [Dataset.xlsx]->[deploy.R]
+
 ```
+
+
+<img src="./vignette/images/diagram-nomoml.PNG" width="450"/>
 
 ## In what circumstances this might be a good application
 
@@ -93,7 +98,7 @@ It seems that this new layer on the application might be a good fit whenever you
 
 In the example above, a new metric `savaged value` was created and rendered as a production layer to be shown in the map as well:
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/savaged-value.PNG" width="800"/>
+<img src="./vignette/images/savaged-value.PNG" width="800"/>
 
 
 
