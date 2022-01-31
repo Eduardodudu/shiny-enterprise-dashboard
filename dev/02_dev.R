@@ -22,10 +22,6 @@ renv::init()
 renv::snapshot()
 
 
-#update your spreadsheet template
-rstudioapi::navigateToFile("data-raw/dataset.R")
-
-
 #update logo svgs
 rstudioapi::navigateToFile("constants.R")
 

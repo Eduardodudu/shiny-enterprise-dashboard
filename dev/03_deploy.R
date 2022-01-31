@@ -11,6 +11,7 @@
 #### CURRENT FILE: DEPLOY SCRIPT #####
 ######################################
 renv::restore()
+rstudioapi::navigateToFile("data-raw/dataset.R")
 shiny::runApp()
 
 # Test your app
