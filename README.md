@@ -17,7 +17,7 @@ application is template ready. Yet, the data set given is a bit hard to
 be prepared under a new project and therefore the creation of new
 metrics might be difficult do design.
 
-For instance, if i want to create a new KPI and insert in this project
+For instance, if you want to create a new KPI and insert in this project
 then you’ll have to:
 
 1.  Adjust the `constants.R` file and create a new metric
@@ -41,7 +41,7 @@ Example:
 orders_count on daily metrics has:
 `orders_count.prev_month, orders_count.change_prev_month, orders_count.prev_year and orders_count.change_prev_year`.
 
-<img src="./vignette/images/daily-stats.png" width="590"/>
+<img src="./vignette/images/daily-stats.PNG" width="590"/>
 
 Since the project has 9 metrics and the daily_metrics fact has 4
 calculations. That means that you’d have to give for the daily reference
@@ -98,7 +98,7 @@ The project can be run from two workflows:
 
     [Dataset.xlsx]->[deploy.R]
 
-<img src="./vignette/images/diagram-nomoml.PNG" width="450"/>
+<img src="./vignette/images/diagram-nomoml.png" width="450"/>
 
 ## In what circumstances this might be a good application
 
