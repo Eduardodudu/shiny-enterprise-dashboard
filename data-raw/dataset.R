@@ -74,7 +74,7 @@ countries_stats <- dataset_df %>%
 
 
 daily_stats <- dataset_df %>% 
-               group_by(country) %>% 
+               group_by(date) %>% 
                summarise(across(where(is.numeric), sum, .names = "{col}")) %>% 
                mutate(across(all_of(cols),
                              list(
