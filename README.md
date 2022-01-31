@@ -33,7 +33,7 @@ it has the following sheets:
 
 <img src="./vignette/images/metrics-df.PNG" width="667"/>
 
-> A new metric has been created: savaged value
+> A new metric has been created: Salvage value
 
 5.  **map_metrics_df**: A relationship of what metrics to be shown in
     the maps grid, the name of each metric must follow the same id of
@@ -44,7 +44,7 @@ it has the following sheets:
 
 <img src="./vignette/images/dataset-df.PNG" width="667"/>
 
-> savaged_value is the new metric created and only increases the dataset
+> salvage_value is the new metric created and only increases the dataset
 > by one column
 
 ### Application workflow
@@ -59,7 +59,7 @@ It seems that this new layer on the application might be a good fit
 whenever you want to deploy a shiny dashboard with minor changes on the
 layout and also by uploading your own data and metrics.
 
-In the example above, a new metric `savaged value` was created and
+In the example above, a new metric `salvage value` was created and
 rendered as a production layer to be shown in the map as well:
 
 <img src="./vignette/images/savaged-value.PNG" width="800"/>
