@@ -17,12 +17,12 @@ application is template ready. Yet, the data set given is a bit hard to
 be prepared under a new project and therefore the creation of new
 metrics might be difficult do design.
 
-For instance, if i want to create a new KPI and insert in this project
+For instance, if you want to create a new KPI and insert in this project
 then you’ll have to:
 
 1.  Adjust the `constants.R` file and create a new metric
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/old-metrics.png" width="518"/>
+<img src="./vignette/images/old-metrics.png" width="518"/>
 
 2.  Update each data set with proper relationship of metrics. This part
     becomes exhaustive because each metric has another layer of
@@ -41,7 +41,7 @@ Example:
 orders_count on daily metrics has:
 `orders_count.prev_month, orders_count.change_prev_month, orders_count.prev_year and orders_count.change_prev_year`.
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/daily-stats.png" width="590"/>
+<img src="./vignette/images/daily-stats.PNG" width="590"/>
 
 Since the project has 9 metrics and the daily_metrics fact has 4
 calculations. That means that you’d have to give for the daily reference
@@ -70,7 +70,7 @@ it has the following sheets:
 3.  **time_range_df:** Relationship of time difference calculations
 4.  **Metrics_df:** A simplified version of the metric_list
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/metrics-df.PNG" width="667"/>
+<img src="./vignette/images/metrics-df.PNG" width="667"/>
 
 > A new metric has been created: savaged value
 
@@ -81,7 +81,7 @@ it has the following sheets:
     metric value, the name of each metric must follow the same id of the
     metrics_df
 
-![](D:/01.%20Eduardo/02.%20Git/shiny-enterprise-dashboard/vignette/images/dataset-df.PNG)
+<img src="./vignette/images/dataset-df.PNG" width="667"/>
 
 > savaged_value is the new metric created and only increases the dataset
 > by one column
@@ -90,17 +90,15 @@ it has the following sheets:
 
 The project can be run from two workflows:
 
-``` nomnoml
-#direction: down
-[Dataset.xlsx]->[renv::restore()]
-[renv::restore()]->[dataset.R]
-[dataset.R]->[shiny::run_app()]
-[shiny::run_app()]->[publish to shinyapps]
+    #direction: down
+    [Dataset.xlsx]->[renv::restore()]
+    [renv::restore()]->[dataset.R]
+    [dataset.R]->[shiny::run_app()]
+    [shiny::run_app()]->[publish to shinyapps]
 
-[Dataset.xlsx]->[deploy.R]
-```
+    [Dataset.xlsx]->[deploy.R]
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+<img src="./vignette/images/diagram-nomoml.png" width="450"/>
 
 ## In what circumstances this might be a good application
 
@@ -111,7 +109,7 @@ layout and also by uploading your own data and metrics.
 In the example above, a new metric `savaged value` was created and
 rendered as a production layer to be shown in the map as well:
 
-<img src="D:/01. Eduardo/02. Git/shiny-enterprise-dashboard/vignette/images/savaged-value.PNG" width="800"/>
+<img src="./vignette/images/savaged-value.PNG" width="800"/>
 
 ## Reproducibility of the changes
 
