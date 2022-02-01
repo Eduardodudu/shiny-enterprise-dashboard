@@ -33,7 +33,8 @@ it has the following sheets:
 
 <img src="./vignette/images/metrics-df.PNG" width="667"/>
 
-> A new metric has been created: Salvage value
+> A new metric has been created: salvage value
+
 
 5.  **map_metrics_df**: A relationship of what metrics to be shown in
     the maps grid, the name of each metric must follow the same id of
