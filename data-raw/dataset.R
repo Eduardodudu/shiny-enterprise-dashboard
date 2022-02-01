@@ -81,7 +81,7 @@ daily_stats <- dataset_df %>%
                                prev_month = ~lag(.x, n = 31),
                                prev_year = ~lag(.x, n = 365),
                                change_prev_month = ~ -(lag(.x, n = 31) - .x),
-                               change_prev_year = ~ -(lag(.x, n = 31) - .x)
+                               change_prev_year = ~ -(lag(.x, n = 365) - .x)
                              ), .names = "{col}.{fn}"))
 
 
