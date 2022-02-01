@@ -104,7 +104,7 @@ yearly_stats <- dataset_df %>%
                 summarise(across(where(is.numeric), sum, .names = "{col}")) %>% 
                 mutate(across(all_of(cols),
                               list(
-                                perc_prev_month = ~ -round(((lag(.x, n = 1) - .x)/.x),2)
+                                perc_prev_year = ~ -round(((lag(.x, n = 1) - .x)/.x),2)
                               ), .names = "{col}.{fn}"))
 
 
