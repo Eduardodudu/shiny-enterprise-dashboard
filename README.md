@@ -35,6 +35,7 @@ it has the following sheets:
 
 > A new metric has been created: salvage value
 
+
 5.  **map_metrics_df**: A relationship of what metrics to be shown in
     the maps grid, the name of each metric must follow the same id of
     the metrics_df
